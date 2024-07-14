@@ -9,7 +9,7 @@ class API
         //$data = ["table" => "Projects"];
         $data = "table=Projects";
         $result = $this->CallAPI("POST", "localhost:3000/list-table", $data);
-        var_dump($result);
+        return $results;
     }
 
     function CallAPI($method, $url, $data = false)
