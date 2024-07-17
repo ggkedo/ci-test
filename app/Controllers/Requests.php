@@ -6,15 +6,17 @@ use \App\Views\RequestView;
 
 class Requests extends BaseController
 {
-    public function list()
+    public function List()
     {
-        $view = StdView::Begint('Igénylések');
+        $view = StdView::Begin('Igénylések');
         $view .= RequestView::NewButton();
 
         $model = model(\App\Models\API::class);
 
         $requests = $model->testConnection();
-        $view .= RequestView::List($requests);
+        //var_dump($requests->body->data);
+        $view .= RequestView::List($requests->body->data);
+        return $view;
     }
 
     public function index(): string

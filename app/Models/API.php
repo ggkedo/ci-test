@@ -6,10 +6,11 @@ class API
 {
     public function testConnection()
     {
-        //$data = ["table" => "Projects"];
-        $data = "table=Projects";
+        //$data = ["table" => "Requests"];
+        //$data = 'table=Requests&filter={"ID": 3}';
+        $data = 'table=Requests';
         $result = $this->CallAPI("POST", "localhost:3000/list-table", $data);
-        return $results;
+        return json_decode($result);
     }
 
     function CallAPI($method, $url, $data = false)
@@ -33,7 +34,8 @@ class API
         }
     
         curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type: application/x-www-form-urlencoded'));
-        var_dump($url);
+        //curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type: multipart/form-data'));
+        //var_dump($url);
 
         // Optional Authentication:
         curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);

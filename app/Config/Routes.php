@@ -7,13 +7,15 @@ use CodeIgniter\Router\RouteCollection;
  */
 $routes->get('/', 'Home::index');
 
-$routes->get('/requests');
+$routes->get('/requests', 'Requests::List');
 $routes->get('/requests/(:num)', 'Requests::GetRequestById/$1');
 $routes->get('/requests/new', 'Home::index');
 
+/*
 $routes->get('/sample/(:num)', '');
 $routes->get('/sample/(:num)/details', '');
 $routes->get('/sample/new', '');
 
 $routes->get('/measurement/(:num)', '');
 $routes->get('/measurement/new', '');
+*/
