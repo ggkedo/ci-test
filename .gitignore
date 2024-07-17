@@ -17,3 +17,6 @@ application/logs/*
 !application/logs/.htaccess
 /vendor/
 /writable/
+
+#composer
+composer.lock
