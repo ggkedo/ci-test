@@ -30,13 +30,27 @@ class RequestView
 		}
 
 		
-		$html .= form_open(base_url('requests/new'));
+		$html .= form_open(base_url('requests/edit'));
 		
 		$html .= StdView::FormInput('Requestor', 'RequestorEmail', 'email', 'betabela@email.com');
 		$html .= StdView::FormInput('Status', 'Status', 'text', 'New');
 		$html .= StdView::FormSelect('Project', 'ProjectId', $projects, $projects[array_key_first($projects)]);
         $html .= StdView::FormInput('Notification emails', 'EmailNotify', 'text', 'Például: alfaaladar@email.com; betabela@email.com', '');
 		$html .= StdView::FormButton('Create', 'check');
+		$html .= form_close();
+
+		return $html;
+	}
+
+	public static function ShowDetails($request)
+	{
+		helper('form');
+		$html = '';
+		$html .= form_open(base_url('requests/edit'), 'inert');		
+		$html .= StdView::FormInput('Requestor', 'RequestorEmail', 'email', '', $request->RequestorEmail);
+		$html .= StdView::FormInput('Status', 'Status', 'text', '', $request->Status);
+		$html .= StdView::FormInput('Project', 'ProjectId', 'text', '', $request->ProjectId);
+        $html .= StdView::FormInput('Notification emails', 'EmailNotify', 'text', '', $request->EmailNotify);
 		$html .= form_close();
 
 		return $html;

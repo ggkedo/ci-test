@@ -9,13 +9,16 @@ $routes->get('/', 'Home::index');
 
 $routes->get('/requests', 'Requests::List');
 $routes->get('/requests/(:num)', 'Requests::GetRequestById/$1');
-$routes->get('/requests/new', 'Home::index');
+$routes->get('/requests/new', 'Requests::Create');
+//$routes->post('/requests/new', 'Requests::Create');
+$routes->post('/requests/edit', 'Requests::Edit');
+$routes->get('/requests/edit/(:num)', 'Requests::Edit/$1');
 
 /*
-$routes->get('/sample/(:num)', '');
-$routes->get('/sample/(:num)/details', '');
-$routes->get('/sample/new', '');
+$routes->get('/samples/(:num)', '');
+$routes->get('/samples/(:num)/details', '');
+$routes->get('/samples/new', '');
 
-$routes->get('/measurement/(:num)', '');
-$routes->get('/measurement/new', '');
+$routes->get('/measurements/(:num)', '');
+$routes->get('/measurements/new', '');
 */
