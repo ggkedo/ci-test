@@ -1,11 +1,10 @@
 <table class="table table-striped table-hover">
 	<thead class="table-secondary">
 		<tr>
-			<th>Megnevezés</th>
-			<th>Kapcsolattartó</th>
-			<th>Határidő</th>
-			<th>Hátralévő napok</th>
-			<th>Állapot</th>
+			<th>Status</th>
+			<th>Requestor</th>
+			<th>Added on</th>
+			<th>Project</th>
 			<th> </th>
 			<th> </th>
 		</tr>
@@ -15,9 +14,10 @@
 <?php foreach($requests as $request):?>
 		<tr>
 			<td><?= $request->Status ?></td>
-			<td><?= $request->ProjectId ?></td>
+			<td><?= $request->RequestorEmail ?></td>
 			<td><?= $request->Modified ?></td>
-			<td><a href="<?= base_url('request/edit/' . $request->ID)?>" title="Szerkesztés"><i class="fa-solid fa-pen h5"></i></a></td>
+			<td><?= $request->ProjectId ?></td>
+			<td><a href="<?= base_url('request/edit/' . $request->ID)?>" title="Szerkesztés"><i class="fa-solid fa-list h5"></i></a></td>
 			<td>
 				<a href="" title="Eltávolítás" class="link-danger" data-bs-toggle="modal" data-bs-target="#delModal<?= $request->ID ?>"><i class="fa-solid fa-trash h5"></i></a>
 

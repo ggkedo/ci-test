@@ -25,28 +25,30 @@
 				<?php //if(\App\Controllers\UserAuth::GetSession()): ?>
                     
 					<li class="nav-item">
-                        <a href="<?= base_url() ?>" class="nav-link">
-                        	<i class="fa-solid fa-house-chimney"></i> Kezdőlap
+                        <a href="<?= base_url('requests') ?>" class="nav-link">
+                        	<i class="fa-solid fa-house-chimney"></i> Home
                         </a>
                     </li>
                     
 					<li class="nav-item">
                         <a href="<?= base_url('projects') ?>" class="nav-link">
-                        	<i class="fa-solid fa-folder-open"></i> Projektek
+                        	<i class="fa-solid fa-folder-open"></i> Projects
                         </a>
                     </li>
-                    
-					<li class="nav-item">
-                        <a href="<?= base_url('tasks') ?>" class="nav-link">
-                        	<i class="fa-solid fa-rectangle-list"></i> Feladatok
+
+<!-- 	TODO				
+                    <li class="nav-item">
+                        <a href="<?= base_url('costs') ?>" class="nav-link">
+                        	<i class="fa-solid fa-rectangle-list"></i> Costing
                         </a>
                     </li>
                     
 					<li class="nav-item">
                         <a href="<?= base_url('logout') ?>" class="nav-link">
-                        	<i class="fa-solid fa-door-open"></i> Kijelentkezés
+                        	<i class="fa-solid fa-door-open"></i> Logout
                         </a>
-                    </li>
+                    </li> 
+-->
 					
 				<?php //endif; ?>
                 </ul>
