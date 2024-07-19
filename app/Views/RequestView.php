@@ -10,11 +10,11 @@ class RequestView
 
         return '<a class="btn btn-primary mb-2" href="'
 			. $url . '">'
-			. '<i class="fa-solid fa-circle-plus"></i> Új igénylés létrehozása' 
+			. '<i class="fa-solid fa-circle-plus"></i> Create new request' 
 			. '</a>';
     }
 
-    public static function CreateForm($success = false, $error = null)
+    public static function CreateForm($projects, $success = false, $error = null)
 	{
 		helper('form');
 		$html = '';
@@ -27,16 +27,16 @@ class RequestView
 		else if($error)
 		{
 			$html .= StdView::ErrorMessage('Hibásan kitöltve!', $error);
-			//foreach($error as $e) { $html .= StdView::ErrorMessage('Hibásan kitöltve!', $e);}
 		}
 
 		
 		$html .= form_open(base_url('requests/new'));
 		
-		$html .= StdView::FormInput('Igénylő', 'contact', 'text', 'Például: betabela@email.com');
-		$html .= StdView::FormSelect('Projekt', 'status', ['Projekt 1'. 'Projekt 2'], 0);
-        $html .= StdView::FormInput('Értesítési email', 'name', 'text', 'Például: alfaaladar@email.com; betabela@email.com', '');
-		$html .= StdView::FormButton('Létrehozás', 'check');
+		$html .= StdView::FormInput('Requestor', 'RequestorEmail', 'email', 'betabela@email.com');
+		$html .= StdView::FormInput('Status', 'Status', 'text', 'New');
+		$html .= StdView::FormSelect('Project', 'ProjectId', $projects, $projects[array_key_first($projects)]);
+        $html .= StdView::FormInput('Notification emails', 'EmailNotify', 'text', 'Például: alfaaladar@email.com; betabela@email.com', '');
+		$html .= StdView::FormButton('Create', 'check');
 		$html .= form_close();
 
 		return $html;
