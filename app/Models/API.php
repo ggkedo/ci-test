@@ -28,6 +28,15 @@ class API
         return json_decode($result);
     }
 
+    public function GetRecord($tableName, $recordId)
+    {
+        $url = self::$host_address . "/get-record";
+        $data = 'table=' . $tableName . '&ID=' . $recordId;
+   
+        $result = $this->CallAPI("POST", $url, $data);
+        return json_decode($result);
+    }
+
     public function SaveRecord($tableName, $data)
     {
         $url = self::$host_address . "/add-record";
