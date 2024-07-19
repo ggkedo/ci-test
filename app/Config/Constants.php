@@ -92,3 +92,7 @@ define('EVENT_PRIORITY_NORMAL', 100);
  * @deprecated Use \CodeIgniter\Events\Events::PRIORITY_HIGH instead.
  */
 define('EVENT_PRIORITY_HIGH', 10);
+
+//API server address
+//moved to API model private property
+//define('API_ADDRESS', '192.168.0.136:3000');
