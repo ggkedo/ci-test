@@ -3,17 +3,53 @@
 namespace App\Models;
 
 class API
-{
+{   
+    private static $host_address = "192.168.0.136:3000";
+
     public function testConnection()
     {
         //$data = ["table" => "Requests"];
         //$data = 'table=Requests&filter={"ID": 3}';
         $data = 'table=Requests';
-        $result = $this->CallAPI("POST", "localhost:3000/list-table", $data);
+        $result = $this->CallAPI("POST", self::$host_address . "/list-table", $data);
         return json_decode($result);
     }
 
-    function CallAPI($method, $url, $data = false)
+    public function GetTable($tableName, $filter=null)
+    {
+        $url = self::$host_address . "/list-table";
+        $data = 'table=' . $tableName;
+        if($filter)
+        {
+            $data .= "&filter=" . $filter;
+        }
+
+        $result = $this->CallAPI("POST", $url, $data);
+        return json_decode($result);
+    }
+
+    public function SaveRecord($tableName, $data)
+    {
+        $url = self::$host_address . "/add-record";
+        $data = 'table=' . $tableName . '&data=' . $data;
+
+        $result = $this->CallAPI("POST", $url, $data);
+        return json_decode($result);
+    }
+
+    public function GetProjectListAsArray()
+    {
+        $projects = $this->GetTable("Projects");
+        $projectList = [];
+        foreach($projects->body->data as $proj)
+        {
+            $projectList[$proj->ID] = $proj->Name;
+        }
+        
+        return $projectList;
+    }
+
+    private function CallAPI($method, $url, $data = false)
     {
         $curl = curl_init();
     
