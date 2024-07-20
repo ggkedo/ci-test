@@ -59,4 +59,32 @@ class SampleView
 
 		return $html;
 	}
+
+    public static function EditForm($sample, $success=false, $error=null)
+	{
+		helper('form');
+        $html = '';
+
+        if($success) 
+		{
+
+			$html .= StdView::SuccessMessage('Sample successfully updated', 'Your data has been saved.');
+			StdView::$formAutoValues = false;
+		}
+		else if($error)
+		{
+			$html .= StdView::ErrorMessage('The form has been filled incorrectly!', $error);
+		}
+
+		$html .= form_open(base_url('samples/' . $sample->ID));		
+        $html .= form_hidden('RequestId', (string) $sample->RequestId);
+		$html .= StdView::FormInput('Sample name', 'Name', 'text', '', $sample->Name);
+		$html .= StdView::FormInput('Sampling date', 'SampleDate', 'date', '', \App\Models\API::GetDateAsString($sample->SampleDate));
+        $html .= StdView::FormInput('Sample location', 'SampleLocation', 'text', '', $sample->SampleLocation);
+        $html .= StdView::FormInput('Sample sublocation', 'SampleSubLocation', 'text', '', $sample->SampleSubLocation);
+		$html .= StdView::FormButton('Edit', 'check');
+		$html .= form_close();
+
+		return $html;
+	}
 }
