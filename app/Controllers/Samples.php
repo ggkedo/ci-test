@@ -34,6 +34,31 @@ class Samples extends BaseController
 
     public function Edit($id)
     {
-       return redirect()->to(base_url('requests/edit/1'));
+        $model = model(\App\Models\API::class);
+        $post = $this->request->getPost();
+
+        if($post)
+        {
+            //Update
+            $data = json_encode($post);
+            $result = $model->UpdateRecord('Samples', $id, $data);
+            //TODO: update validation
+            //if($result->status == 200){}
+            var_dump('Updated');
+            $sample = $model->GetRecord('Samples', $id)->body->data[0];
+            $form = SampleView::EditForm($sample, true);
+        }
+        else
+        {
+            $sample = $model->GetRecord('Samples', $id)->body->data[0];
+            $form = SampleView::EditForm($sample);
+        }        
+            
+        $view = StdView::Begin('Edit sample details for ' . $sample->Name);
+        $view .= $form;
+        $view .= StdView::End();
+
+        return $view;
+        //return redirect()->to(base_url('requests/edit/1')); 
     }
 }
