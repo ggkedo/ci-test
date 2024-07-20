@@ -17,7 +17,7 @@
 			<td><?= $request->RequestorEmail ?></td>
 			<td><?= $request->Modified ?></td>
 			<td><?= $request->ProjectId ?></td>
-			<td><a href="<?= base_url('request/edit/' . $request->ID)?>" title="Edit"><i class="fa-solid fa-list h5"></i></a></td>
+			<td><a href="<?= base_url('requests/' . $request->ID)?>" title="Edit"><i class="fa-solid fa-list h5"></i></a></td>
 			<td>
 				<a href="" title="Delete" class="link-danger" data-bs-toggle="modal" data-bs-target="#delModal<?= $request->ID ?>"><i class="fa-solid fa-trash h5"></i></a>
 
