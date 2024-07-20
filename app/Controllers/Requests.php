@@ -9,12 +9,21 @@ class Requests extends BaseController
 {
     public function List()
     {
-        $view = StdView::Begin('Requests');
-        $view .= RequestView::NewButton();
+        $view = StdView::Begin('Requests');        
 
         $model = model(\App\Models\API::class);
+
+        $post = $this->request->getPost();
+        if(isset($post['del']))
+        {
+            $id = $post['del'];
+            $result = $model->DeleteRecord('Requests', $id);
+            $view .= StdView::AlertMessage('success', 'Request deleted', 'Request no. ' . $id . ' has been succesfully deleted', true);
+            //var_dump($result);
+        }
         $requests = $model->GetTable('Requests');
 
+        $view .= RequestView::NewButton();
         $view .= RequestView::List($requests->body->data);
         return $view;
     }
