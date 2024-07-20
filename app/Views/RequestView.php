@@ -21,16 +21,16 @@ class RequestView
 		if($success) 
 		{
 
-			$html .= StdView::SuccessMessage('Igénylés sikeresen létrehozva!', 'Az adatok rögzítésre kerültek');
+			$html .= StdView::SuccessMessage('Request successfully created', 'Your data has been saved.');
 			StdView::$formAutoValues = false;
 		}
 		else if($error)
 		{
-			$html .= StdView::ErrorMessage('Hibásan kitöltve!', $error);
+			$html .= StdView::ErrorMessage('The form has been filled incorrectly!', $error);
 		}
 
 		
-		$html .= form_open(base_url('requests/edit'));
+		$html .= form_open(base_url('requests/new'));
 		
 		$html .= StdView::FormInput('Requestor', 'RequestorEmail', 'email', 'betabela@email.com');
 		$html .= StdView::FormInput('Status', 'Status', 'text', 'New');
