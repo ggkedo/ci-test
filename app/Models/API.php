@@ -30,8 +30,8 @@ class API
 
     public function GetRecord($tableName, $recordId)
     {
-        $url = self::$host_address . "/get-record";
-        $data = 'table=' . $tableName . '&ID=' . $recordId;
+        $url = self::$host_address . "/get-record/" . $recordId;
+        $data = 'table=' . $tableName;
    
         $result = $this->CallAPI("POST", $url, $data);
         return json_decode($result);
@@ -41,6 +41,15 @@ class API
     {
         $url = self::$host_address . "/add-record";
         $data = 'table=' . $tableName . '&data=' . $data;
+
+        $result = $this->CallAPI("POST", $url, $data);
+        return json_decode($result);
+    }
+
+    public function DeleteRecord($tableName, $id)
+    {
+        $url = self::$host_address . "/delete-record/" . $id;
+        $data = 'table=' . $tableName;
 
         $result = $this->CallAPI("POST", $url, $data);
         return json_decode($result);
