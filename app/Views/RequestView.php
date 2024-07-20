@@ -45,6 +45,7 @@ class RequestView
 	public static function ShowDetails($request)
 	{
 		helper('form');
+		
 		$html = '';
 		$html .= form_open(base_url('requests/edit'), 'inert');		
 		$html .= StdView::FormInput('Requestor', 'RequestorEmail', 'email', '', $request->RequestorEmail);
