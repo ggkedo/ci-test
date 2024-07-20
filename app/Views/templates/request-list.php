@@ -28,7 +28,7 @@
 
 					  <!-- Modal Header -->
 					  <div class="modal-header">
-						<h4 class="modal-title">Delete: <?= $request->ProjectId ?></h4>
+						<h4 class="modal-title">Delete: <?= $request->ID ?></h4>
 						<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
 					  </div>
 
@@ -39,7 +39,7 @@
 
 					  <!-- Modal footer -->
 					  <div class="modal-footer">
-						  <form method="post" action="<?= base_url('request') ?>">
+						  <form method="post" action="<?= base_url('requests') ?>">
 							<button name="del" value="<?= $request->ID ?>" type="submit" class="btn btn-danger">Yes</button>
 							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
 						  </form>
