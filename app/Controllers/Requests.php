@@ -62,7 +62,7 @@ class Requests extends BaseController
     {
         $model = model(\App\Models\API::class);
 
-        $filter = json_encode(['RequestID' => $id]);
+        $filter = json_encode(['RequestId' => $id]);
         $samples = $model->GetTable('Samples', $filter)->body->data;
         $request = $model->GetRecord('Requests', $id)->body->data[0];
         
