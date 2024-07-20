@@ -19,10 +19,7 @@ $routes->post('/requests/edit/(:num)', 'Requests::Edit/$1');
 $routes->post('/samples/new', 'Samples::Create');
 $routes->get('/samples/(:num)', 'Samples::Edit/$1');
 $routes->post('/samples/(:num)', 'Samples::Edit/$1');
-$routes->get('/samples/edit/(:num)', 'Samples::Edit/$1');
-$routes->post('/samples/edit/(:num)', 'Samples::Edit/$1');
 
-/*
-$routes->get('/measurements/(:num)', '');
-$routes->get('/measurements/new', '');
-*/
+$routes->post('/measurements/new', 'Measurements::Create');
+$routes->get('/measurements/(:num)', 'Measurements::Edit/$1');
+$routes->post('/measurements/(:num)', 'Measurements::Edit/$1');

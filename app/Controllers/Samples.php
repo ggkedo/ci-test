@@ -3,6 +3,7 @@
 namespace App\Controllers;
 use \App\Views\StdView;
 use \App\Views\SampleView;
+use \App\Views\MeasurementView;
 
 class Samples extends BaseController
 {
@@ -52,6 +53,12 @@ class Samples extends BaseController
         {
             $sample = $model->GetRecord('Samples', $id)->body->data[0];
             $form = SampleView::EditForm($sample);
+
+            $filter = json_encode(['SampleID' => $id]);
+            $measurements = $model->GetTable('Measurements', $filter)->body->data;
+
+            $form .= MeasurementView::NewPostButton($id);
+            $form .= MeasurementView::List($id, $measurements);
         }        
             
         $view = StdView::Begin('Edit sample details for ' . $sample->Name);
