@@ -46,6 +46,15 @@ class API
         return json_decode($result);
     }
 
+    public function UpdateRecord($tableName, $id, $data)
+    {
+        $url = self::$host_address . "/update-record/" . $id;
+        $data = 'table=' . $tableName . '&data=' . $data;
+
+        $result = $this->CallAPI("POST", $url, $data);
+        return json_decode($result);
+    }
+
     public function DeleteRecord($tableName, $id)
     {
         $url = self::$host_address . "/delete-record/" . $id;
@@ -65,6 +74,11 @@ class API
         }
         
         return $projectList;
+    }
+
+    public static function GetDateAsString($date)
+    {
+        return date('Y-m-d', strtotime($date));
     }
 
     private function CallAPI($method, $url, $data = false)
