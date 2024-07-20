@@ -1,6 +1,6 @@
 <?php
-
 namespace App\Views;
+use \App\Views\StdView;
 
 class SampleView
 {
@@ -14,8 +14,49 @@ class SampleView
 			. '</a>';
     }
 
-    public static function List($samples)
+    public static function NewPostButton($id)
     {
-        return view('templates/samples-list', ['samples' => $samples]);
+        helper('form');
+     
+        $html =  form_open(base_url('samples/new'));
+        $html .= form_hidden('RequestId', $id);
+        $html .= StdView::FormButton('Add Sample', 'check');
+        $html .= form_close();
+
+        return $html;
     }
+
+    public static function List($requestId, $samples)
+    {
+        return view('templates/samples-list', ['id' => $requestId, 'samples' => $samples]);
+    }
+
+    public static function CreateForm($requestId, $success = false, $error = null)
+	{
+		helper('form');
+		$html = '';
+		if($success) 
+		{
+
+			$html .= StdView::SuccessMessage('Sample successfully created', 'Your data has been saved.');
+			StdView::$formAutoValues = false;
+		}
+		else if($error)
+		{
+			$html .= StdView::ErrorMessage('The form has been filled incorrectly!', $error);
+		}
+
+		
+		$html .= form_open(base_url('samples/new'));
+		
+        $html .= form_hidden('RequestId', $requestId);
+		$html .= StdView::FormInput('Sample name', 'Name', 'text', '');
+		$html .= StdView::FormInput('Sampling date', 'SampleDate', 'date', '');
+        $html .= StdView::FormInput('Sample location', 'SampleLocation', 'text', '', '');
+        $html .= StdView::FormInput('Sample sublocation', 'SampleSubLocation', 'text', '', '');
+		$html .= StdView::FormButton('Create', 'check');
+		$html .= form_close();
+
+		return $html;
+	}
 }
