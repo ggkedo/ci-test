@@ -25,6 +25,25 @@ class StdView
 		$html = '<p class="alert alert-success"><strong>'.$title.'</strong> '. $text .'</p>';
 		return $html;
 	}
+
+	public static function AlertMessage($type, $title, $text, $dismissible=false)
+	{
+		if($dismissible)
+		{
+			$html = '<div class="alert alert-' . $type . ' alert-dismissible fade show" role="alert">
+						<strong>' . $title . '</strong> ' . $text . '
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>';
+		}
+		else
+		{
+			$html = '<p class="alert alert-' . $type . '"><strong>'.$title.'</strong> '. $text .'</p>';
+		}
+		
+		return $html;
+	}
 	
 	public static function FormInput($label, $name, $type='text', $placeholder='', $value='')
 	{
