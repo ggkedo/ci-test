@@ -14,6 +14,12 @@ class StdView
 		return view('templates/end');
 	}
 	
+	public static function SectionDivider()
+	{
+		$html = '</section><section class="p-4 bg-white border shadow mb-4">';
+		return $html;
+	}
+
 	public static function ErrorMessage($title, $text)
 	{
 		$html = '<p class="alert alert-danger"><strong>'.$title.'</strong> '. $text .'</p>';
