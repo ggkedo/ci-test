@@ -15,7 +15,7 @@
 		<tr>
 			<td><?= $request->Status ?></td>
 			<td><?= $request->RequestorEmail ?></td>
-			<td><?= $request->Modified ?></td>
+			<td><?= \App\Models\API::GetDateAsString($request->Created) ?></td>
 			<td><?= $request->Name ?></td>
 			<td><a href="<?= base_url('requests/' . $request->ID)?>" title="Edit"><i class="fa-solid fa-list h5"></i></a></td>
 			<td>

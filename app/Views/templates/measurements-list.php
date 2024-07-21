@@ -16,7 +16,7 @@
 			<td><?= $measurement->ID ?></td>
 			<td><?= $measurement->MethodId //TODO: query method name?></td> 
 			<td><?= $measurement->Result ?></td>
-			<td><?= $measurement->MeasurementDate ?></td>
+			<td><?= \App\Models\API::GetDateAsString($measurement->MeasurementDate) ?></td>
 			<td><a href="<?= base_url('measurements/' . $measurement->ID)?>" title="Edit"><i class="fa-solid fa-list h5"></i></a></td>
 			<td>
 				<a href="" title="Delete" class="link-danger" data-bs-toggle="modal" data-bs-target="#delModal<?= $measurement->ID ?>"><i class="fa-solid fa-trash h5"></i></a>
