@@ -12,6 +12,8 @@ class Samples extends BaseController
         $post = $this->request->getPost();
         $requestId = $post['RequestId'];
         
+        $view = StdView::Begin('Add sample');
+
         if(isset($post['Name'])) //TODO: use better validation
         {
             //Register sample
@@ -22,14 +24,18 @@ class Samples extends BaseController
             {
                 return redirect()->to(base_url('requests/' . $requestId));
             }
+            else
+            {
+                $view .= SampleView::CreateForm($requestId, false, true);
+            }
         }
         else
         {
             //Show sample registration form
-            $view = StdView::Begin('Add sample');
             $view .= SampleView::CreateForm($requestId);
         }      
 
+        $view .= StdView::End();
         return $view;
     }
 
