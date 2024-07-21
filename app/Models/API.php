@@ -42,6 +42,28 @@ class API
         return json_decode($result);
     }
 
+    public function GetRequestsTableWProjectName()
+    {
+        $url = self::$host_address . "/join-tables";
+        $data = '';
+        $params = 
+        [
+            'table1' => 'Requests',
+            'table2' => 'Projects',
+            'key1' => 'ProjectId',
+            'key2' => 'ID',
+            'fields2' => 'Name' 
+        ];
+        foreach($params as $key => $value)
+        {
+            $data .= '&' . $key . '=' . $value;
+        }
+        $data = substr($data, 1);
+
+        $result = $this->CallAPI("POST", $url, $data);
+        return json_decode($result);
+    }
+
     public function GetRecord($tableName, $recordId)
     {
         $url = self::$host_address . "/get-record/" . $recordId;
@@ -104,7 +126,14 @@ class API
 
     public static function GetDateAsString($date)
     {
-        return date('Y-m-d', strtotime($date));
+        if($date)
+        {
+            return date('Y-m-d', strtotime($date));
+        }
+        else
+        {
+            return '';
+        }
     }
 
     private function CallAPI($method, $url, $data = false)
