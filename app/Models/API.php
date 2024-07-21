@@ -28,6 +28,20 @@ class API
         return json_decode($result);
     }
 
+    public function GetTablesJoined($params)
+    {
+        $url = self::$host_address . "/join-tables";
+        $data = '';
+        foreach($params as $key => $value)
+        {
+            $data .= '&' . $key . '=' . $value;
+        }
+        $data = substr($data, 1);
+
+        $result = $this->CallAPI("POST", $url, $data);
+        return json_decode($result);
+    }
+
     public function GetRecord($tableName, $recordId)
     {
         $url = self::$host_address . "/get-record/" . $recordId;
