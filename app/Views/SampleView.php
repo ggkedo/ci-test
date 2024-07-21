@@ -20,7 +20,7 @@ class SampleView
      
         $html =  form_open(base_url('samples/new'));
         $html .= form_hidden('RequestId', $id);
-        $html .= StdView::FormButton('Add Sample', 'check');
+        $html .= StdView::FormButton('Add Sample', 'plus');
         $html .= form_close();
 
         return $html;
