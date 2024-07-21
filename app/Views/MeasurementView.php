@@ -56,7 +56,7 @@ class MeasurementView
 		return $html;
 	}
 
-    public static function EditForm($sample, $success=false, $error=null)
+    public static function EditForm($measurement, $methods, $success=false, $error=null)
 	{
 		helper('form');
         $html = '';
@@ -72,13 +72,16 @@ class MeasurementView
 			$html .= StdView::ErrorMessage('The form has been filled incorrectly!', $error);
 		}
 
-		$html .= form_open(base_url('samples/' . $sample->ID));		
-        $html .= form_hidden('RequestId', (string) $sample->RequestId);
-		$html .= StdView::FormInput('Sample name', 'Name', 'text', '', $sample->Name);
-		$html .= StdView::FormInput('Sampling date', 'SampleDate', 'date', '', \App\Models\API::GetDateAsString($sample->SampleDate));
-        $html .= StdView::FormInput('Sample location', 'SampleLocation', 'text', '', $sample->SampleLocation);
-        $html .= StdView::FormInput('Sample sublocation', 'SampleSubLocation', 'text', '', $sample->SampleSubLocation);
-		$html .= StdView::FormButton('Edit', 'check');
+
+		$html .= form_open(base_url('measurements/' . $measurement->ID));
+		
+        $html .= form_hidden('SampleId', (string) $measurement->SampleId);
+		$html .= StdView::FormSelect('Measurement type', 'MethodId', $methods, $measurement->MethodId, $measurement->MethodId);
+		$html .= StdView::FormInput('Result', 'Result', 'text', '', (string) $measurement->Result);
+		$html .= StdView::FormInput('Measurement date', 'MeasurementDate', 'date', '', \App\Models\API::GetDateAsString($measurement->MeasurementDate));
+		$html .= StdView::FormInput('Measured by', 'MeasuredByEmail', 'email', '',  (string) $measurement->MeasuredByEmail);
+	    $html .= StdView::FormButton('Update', 'check');
+		$html .= form_close();
 		$html .= form_close();
 
 		return $html;
