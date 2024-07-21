@@ -74,6 +74,7 @@ class Samples extends BaseController
         $view = StdView::Begin('Edit sample details for ' . $sample->Name);
         $view .= $alert;
         $view .= SampleView::EditForm($sample, $sampleUpdateSuccessful);
+        $view .= StdView::SectionDivider();
         $view .= MeasurementView::NewPostButton($id);
         $view .= MeasurementView::List($id, $measurements);
         $view .= StdView::End();
