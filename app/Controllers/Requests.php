@@ -12,6 +12,15 @@ class Requests extends BaseController
         $view = StdView::Begin('Requests');        
 
         $model = model(\App\Models\API::class);
+        $params = 
+        [
+            'table1' => 'Requests',
+            'table2' => 'Projects',
+            'key1' => 'ProjectId',
+            'key2' => 'ID',
+            'fields2' => 'Name' 
+        ];
+        $requests = $model->GetTablesJoined($params);
 
         $post = $this->request->getPost();
         if(isset($post['del']))
@@ -19,9 +28,7 @@ class Requests extends BaseController
             $id = $post['del'];
             $result = $model->DeleteRecord('Requests', $id);
             $view .= StdView::AlertMessage('success', 'Request deleted', 'Request no. ' . $id . ' has been succesfully deleted', true);
-            //var_dump($result);
         }
-        $requests = $model->GetTable('Requests');
 
         $view .= RequestView::NewButton();
         $view .= RequestView::List($requests->body->data);
