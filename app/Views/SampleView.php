@@ -43,7 +43,7 @@ class SampleView
 		}
 		else if($error)
 		{
-			$html .= StdView::ErrorMessage('The form has been filled incorrectly!', $error);
+			$html .= StdView::ErrorMessage('The form has been filled incorrectly!', ''); //second argument: error message
 		}
 
 		
