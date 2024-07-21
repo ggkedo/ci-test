@@ -76,6 +76,18 @@ class API
         return $projectList;
     }
 
+    public function GetMethodListAsArray()
+    {
+        $methods = $this->GetTable("Methods");
+        $methodsList = [];
+        foreach($methods->body->data as $method)
+        {
+            $methodsList[$method->ID] = $method->ShortName;
+        }
+        
+        return $methodsList;
+    }
+
     public static function GetDateAsString($date)
     {
         return date('Y-m-d', strtotime($date));
