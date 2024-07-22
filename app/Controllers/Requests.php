@@ -70,15 +70,21 @@ class Requests extends BaseController
         $model = model(\App\Models\API::class);
         $post = $this->request->getPost();
         $alert = '';
+        $success = false;
+        $error = '';
 
         if($post)
         {
             //Update request details
             $data = json_encode($post);
             $result = $model->UpdateRecord('Requests', $id, $data);
-            if($result->error)
+            if(!$result->error)
             {
-                $alert = StdView::AlertMessage('danger', 'Update failed', 'Form filled incorrectly', true);
+                return redirect()->to(base_url('requests/' . $id));    
+            }
+            else
+            {
+                $error = $result->error;
             }
         }
 
@@ -87,7 +93,7 @@ class Requests extends BaseController
 
         $view = StdView::Begin('Edit request #' . $id); 
         $view .= $alert;       
-        $view .= RequestView::EditForm($request, $projectList);
+        $view .= RequestView::EditForm($request, $projectList, $success, $error);
         $view .= StdView::End();
 
         return $view;

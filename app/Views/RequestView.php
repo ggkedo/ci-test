@@ -68,7 +68,7 @@ class RequestView
 			$html .= StdView::ErrorMessage('The form has been filled incorrectly!', $error);
 		}
 		
-		$html .= form_open(base_url('requests/' . $request->ID));
+		$html .= form_open(base_url('requests/edit/' . $request->ID));
 		
 		$html .= StdView::FormInput('Requestor', 'RequestorEmail', 'email', 'betabela@email.com', $request->RequestorEmail);
 		$html .= StdView::FormInput('Status', 'Status', 'text', 'New', $request->Status);
